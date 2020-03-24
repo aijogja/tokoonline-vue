@@ -9,9 +9,9 @@
         <mdb-dropdown tag="li" class="nav-item">
           <mdb-dropdown-toggle tag="a" navLink color="indigo" slot="toggle" waves-fixed>Category</mdb-dropdown-toggle>
           <mdb-dropdown-menu>
-            <mdb-dropdown-item :to="{name:'category', params:{categoryId:1}}">Category 1</mdb-dropdown-item>
-            <mdb-dropdown-item :to="{name:'category', params:{categoryId:2}}">Category 2</mdb-dropdown-item>
-            <mdb-dropdown-item :to="{name:'category', params:{categoryId:3}}">Category 3</mdb-dropdown-item>
+            <div v-for="category in categories" :key="category.id">
+              <mdb-dropdown-item :to="{name:'category', params:{categoryId:category.id}}">{{category.nama}}</mdb-dropdown-item>
+            </div>
           </mdb-dropdown-menu>
         </mdb-dropdown>
       </mdb-navbar-nav>
@@ -34,6 +34,7 @@ import {
       mdbDropdownToggle,
       mdbDropdownItem
   } from 'mdbvue';
+import { mapState } from 'vuex'
 
 export default {
   name: 'HomePage',
@@ -47,7 +48,13 @@ export default {
       mdbDropdownMenu,
       mdbDropdownToggle,
       mdbDropdownItem,
-    }
+  },
+  computed: mapState({
+    categories: state => state.categories.all
+  }),
+  created () {
+    this.$store.dispatch('categories/getAllCategories')
+  }
 }
 </script>
 

@@ -8,4 +8,15 @@ export default {
           callback(res.data);
         })
   },
+  getCategoryProducts (categoryId, callback) {
+    axios
+        .get('https://tokoonline-api.herokuapp.com/api/produk/',{
+          params: {
+            kategori: categoryId
+          }
+        })
+        .then(res => {
+          callback(res.data);
+        })
+  },
 }

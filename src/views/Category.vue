@@ -3,13 +3,13 @@
         <mdb-container fluid grid-list-xl>
             <mdb-row>
                 <mdb-col col="12">
-                    <h1>Category {{categoryId}}</h1>
+                    <h1>Category : {{category.nama}}</h1>
                 </mdb-col>
             </mdb-row>
         </mdb-container>
         <mdb-container>
             <mdb-row>
-                <mdb-col sm="4" class="pt-5">
+                <mdb-col sm="4" class="pt-5" v-for="product in products" :key="product.id">
                     <mdb-card>
                         <mdb-view hover>
                             <a href="#!">
@@ -20,59 +20,8 @@
                             </a>
                         </mdb-view>
                         <mdb-card-body>
-                            <mdb-card-title>Nama Produk</mdb-card-title>
-                            <mdb-card-text>Deskripsi</mdb-card-text>
-                            <mdb-btn color="primary">Add to Cart</mdb-btn>
-                        </mdb-card-body>
-                    </mdb-card>
-                </mdb-col>
-                <mdb-col sm="4" class="pt-5">
-                    <mdb-card>
-                        <mdb-view hover>
-                            <a href="#!">
-                                <mdb-card-image
-                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg"
-                                    alt="Card image cap"/>
-                                <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
-                            </a>
-                        </mdb-view>
-                        <mdb-card-body>
-                            <mdb-card-title>Nama Produk</mdb-card-title>
-                            <mdb-card-text>Deskripsi</mdb-card-text>
-                            <mdb-btn color="primary">Add to Cart</mdb-btn>
-                        </mdb-card-body>
-                    </mdb-card>
-                </mdb-col>
-                <mdb-col sm="4" class="pt-5">
-                    <mdb-card>
-                        <mdb-view hover>
-                            <a href="#!">
-                                <mdb-card-image
-                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg"
-                                    alt="Card image cap"/>
-                                <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
-                            </a>
-                        </mdb-view>
-                        <mdb-card-body>
-                            <mdb-card-title>Nama Produk</mdb-card-title>
-                            <mdb-card-text>Deskripsi</mdb-card-text>
-                            <mdb-btn color="primary">Add to Cart</mdb-btn>
-                        </mdb-card-body>
-                    </mdb-card>
-                </mdb-col>
-                <mdb-col sm="4" class="pt-5">
-                    <mdb-card>
-                        <mdb-view hover>
-                            <a href="#!">
-                                <mdb-card-image
-                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%282%29.jpg"
-                                    alt="Card image cap"/>
-                                <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
-                            </a>
-                        </mdb-view>
-                        <mdb-card-body>
-                            <mdb-card-title>Nama Produk</mdb-card-title>
-                            <mdb-card-text>Deskripsi</mdb-card-text>
+                            <mdb-card-title>{{product.nama}} - {{product.merk}}</mdb-card-title>
+                            <mdb-card-text>Harga Rp. {{product.harga}}</mdb-card-text>
                             <mdb-btn color="primary">Add to Cart</mdb-btn>
                         </mdb-card-body>
                     </mdb-card>
@@ -96,6 +45,7 @@ import {
       mdbView,
       mdbMask,
   } from "mdbvue";
+import { mapState } from 'vuex'
 
 export default {
   name: 'Category',
@@ -114,6 +64,22 @@ export default {
   },
   props: {
     categoryId: Number
-  }
+  },
+  computed: mapState({
+    category: state => state.categories.detail,
+    products: state => state.categories.products
+  }),
+  created () {
+    //   ketika halaman diload pertama kali
+    this.$store.dispatch('categories/getCategoryDetail',{
+        categoryId: this.categoryId
+    })
+  },
+  updated () {
+    //   ketika ganti pilihan category
+    // this.$store.dispatch('categories/getCategoryDetail',{
+    //     categoryId: this.categoryId
+    // })
+  },
 }
 </script>
