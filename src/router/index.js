@@ -25,6 +25,6 @@ export default new Router({
       name: 'category',
       props: true,
       component: Category
-    },
+    }
   ]
 })

@@ -24,30 +24,30 @@
 
 <script>
 import {
-      mdbNavbar,
-      mdbNavbarBrand,
-      mdbNavbarToggler,
-      mdbNavbarNav,
-      mdbNavItem,
-      mdbDropdown,
-      mdbDropdownMenu,
-      mdbDropdownToggle,
-      mdbDropdownItem
-  } from 'mdbvue';
+  mdbNavbar,
+  mdbNavbarBrand,
+  mdbNavbarToggler,
+  mdbNavbarNav,
+  mdbNavItem,
+  mdbDropdown,
+  mdbDropdownMenu,
+  mdbDropdownToggle,
+  mdbDropdownItem
+} from 'mdbvue'
 import { mapState } from 'vuex'
 
 export default {
   name: 'HomePage',
   components: {
-      mdbNavbar,
-      mdbNavbarBrand,
-      mdbNavbarToggler,
-      mdbNavbarNav,
-      mdbNavItem,
-      mdbDropdown,
-      mdbDropdownMenu,
-      mdbDropdownToggle,
-      mdbDropdownItem,
+    mdbNavbar,
+    mdbNavbarBrand,
+    mdbNavbarToggler,
+    mdbNavbarNav,
+    mdbNavItem,
+    mdbDropdown,
+    mdbDropdownMenu,
+    mdbDropdownToggle,
+    mdbDropdownItem
   },
   computed: mapState({
     categories: state => state.categories.all

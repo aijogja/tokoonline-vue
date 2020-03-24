@@ -5,7 +5,7 @@ import product from '../../api/product'
 const state = {
   all: [],
   detail: {},
-  products: [],
+  products: []
 }
 
 // getters
@@ -18,7 +18,7 @@ const actions = {
       commit('setCategories', categories)
     })
   },
-  getCategoryDetail ({ commit }, {categoryId}) {
+  getCategoryDetail ({ commit }, { categoryId }) {
     console.log(categoryId)
     category.getCategoryDetail(categoryId, category => {
       commit('setCategoryDetail', category)
@@ -34,10 +34,10 @@ const mutations = {
   setCategories (state, categories) {
     state.all = categories
   },
-  setCategoryDetail (state, category){
+  setCategoryDetail (state, category) {
     state.detail = category
   },
-  setCategoryProducts (state, products){
+  setCategoryProducts (state, products) {
     state.products = products
   }
 }
