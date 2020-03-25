@@ -19,7 +19,6 @@ const actions = {
     })
   },
   getCategoryDetail ({ commit }, { categoryId }) {
-    console.log(categoryId)
     category.getCategoryDetail(categoryId, category => {
       commit('setCategoryDetail', category)
     })
